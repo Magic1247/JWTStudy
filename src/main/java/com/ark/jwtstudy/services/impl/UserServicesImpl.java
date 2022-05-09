@@ -37,4 +37,10 @@ public class UserServicesImpl implements UserServices {
     public void deleteUser(Integer userId) {
         userMapper.deleteUser(userId);
     }
+
+    @Override
+    public User login(String name, String password) {
+        userMapper.login(name, password);
+        return userMapper.login(name, password);
+    }
 }

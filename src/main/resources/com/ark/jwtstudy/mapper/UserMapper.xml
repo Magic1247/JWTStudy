@@ -24,7 +24,7 @@
 
     <insert id="addUser" parameterType="com.ark.jwtstudy.pojo.User">
         insert into test_user
-        values (#{id}, #{name}, #{age}, #{gender}, #{classNum});
+        values (#{id}, #{name}, #{age}, #{gender}, #{classNum}), #{password};
     </insert>
 
     <update id="updateUser" parameterType="com.ark.jwtstudy.pojo.User">
@@ -32,7 +32,9 @@
         set name     = #{name},
             age      = #{age},
             gender= #{gender},
-            class_num= #{classNum};
+            class_num= #{classNum},
+            password = #{password}
+        where id = #{id};
     </update>
 
     <delete id="deleteUser" parameterType="int">
@@ -40,4 +42,15 @@
         from test_user
         where id = #{userId};
     </delete>
+
+    <select id="login" parameterType="String" resultType="com.ark.jwtstudy.pojo.User">
+        select id,
+               name,
+               age,
+               gender,
+               class_num as classNum
+        from test_user
+        where name = #{name}
+          and password = #{password};
+    </select>
 </mapper>

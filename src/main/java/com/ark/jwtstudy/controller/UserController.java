@@ -3,6 +3,7 @@ package com.ark.jwtstudy.controller;
 import com.ark.jwtstudy.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserController {
     String test();
@@ -13,4 +14,6 @@ public interface UserController {
     String updateUser(User user);
 
     String deleteUser(Integer userId);
+
+    Map login(User user);
 }
