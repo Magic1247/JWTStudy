@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ark.jwtstudy.mapper.UserMapper">
+
+    <select id="getAllUsers" resultType="com.ark.jwtstudy.pojo.User">
+        select id,
+               name,
+               age,
+               gender,
+               class_num as classNum
+        from test_user;
+    </select>
+
+    <select id="getUserById" resultType="com.ark.jwtstudy.pojo.User" parameterType="int">
+        select id,
+               name,
+               age,
+               gender,
+               class_num as classNum
+        from test_user
+        where id = #{id};
+    </select>
+
+    <insert id="addUser" parameterType="com.ark.jwtstudy.pojo.User">
+        insert into test_user
+        values (#{id}, #{name}, #{age}, #{gender}, #{classNum});
+    </insert>
+
+    <update id="updateUser" parameterType="com.ark.jwtstudy.pojo.User">
+        update test_user
+        set name     = #{name},
+            age      = #{age},
+            gender= #{gender},
+            class_num= #{classNum};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from test_user
+        where id = #{userId};
+    </delete>
+</mapper>

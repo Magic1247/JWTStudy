@@ -1,0 +1,20 @@
+#服务启动端口号为80
+server:
+  port: 80
+
+
+#jdbc连接信息
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://116.62.35.157:3306/study_data?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+
+
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.ark.jwtstudy.pojo
+  config-locations: classpath:com/ark/jwtstudy/mapper/*Mapper.xml
+
