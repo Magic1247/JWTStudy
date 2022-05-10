@@ -9,13 +9,18 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.SignatureException;
 import java.util.HashMap;
 
 public class JWTInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//        try{
         String token = request.getHeader("token");
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//            new HashMap<String,String>().put("msg", "未传递token");
+//        }
+
         HashMap<String, Object> map = new HashMap<>();
         try {
             JWTUtils.verify(token);
@@ -35,6 +40,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         }
         String json = new ObjectMapper().writeValueAsString(map);
         response.setContentType("application/json;charset=UTF-8");
+        response.setStatus(403);
         response.getWriter().println(json);
         return false;
 
